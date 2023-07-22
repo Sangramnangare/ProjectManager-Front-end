@@ -1,0 +1,62 @@
+<main id="main" class="main" *ngIf="projects">
+
+  <div class="pagetitle">
+    <h1>Project Modules</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Projects Modules</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row bg-light m-3 shadow p-3 mb-5 bg-body rounded">
+      <h3>Project Name :- {{projects.name}}</h3>
+      <form class="row g-3" [formGroup]="moduledata" (ngSubmit)="save(moduledata.value)">
+        <div class="col-md-2 text-center">
+          <label for="inputPassword4" class="form-label">Module Name: </label>
+        </div>
+
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="inputPassword4" formControlName="name">
+        </div>
+
+        <div class="col-6 text-end mb-3 mt-5">
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+
+    <hr>
+
+    <div class="row  m-3">
+      <div class="col-md-4 "></div>
+      <div class="col-md-3 ">
+        <h2 class="text-center text-shadow shadow p-2 mb-4 bg-body rounded">Project Modules</h2>
+      </div>
+
+      <table class="table table-secondary text-center shadow p-3 mb-5 bg-body rounded">
+        <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Module Name</th>
+            <th>Action</th>
+            <th>Task</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let module of modules;let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{module.name}}</td>
+            <td><button class="btn btn-primary" (click)="Edit(module.id)">Edit</button>
+              <button class="btn btn-danger" (click)="Delete(module.id)">Delete</button>
+            </td>
+            <td><a class="btn btn-warning" routerLink="projecttasks/{{module.id}}">Add Task</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>

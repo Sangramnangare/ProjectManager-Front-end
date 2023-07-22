@@ -1,0 +1,135 @@
+<main id="main" class="main" >
+
+  <div class="pagetitle">
+    <h1>Projects</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Projects</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row bg-light m-3 shadow p-3 mb-5 bg-body rounded">
+      <div class="row">
+        <div class="col-md-6">
+          <h3>Project Name :- {{projects.name}}</h3>
+        </div>
+        <div class="col-md-6">
+          <h3>Module Name :-{{modules.name}}</h3>
+        </div>
+      </div>
+
+      <form class="row g-3" [formGroup]="taskdata" (ngSubmit)="save(taskdata.value)">
+        <div class="col-md-10">
+          <label for="inputPassword4" class="form-label">Task</label>
+          <input type="text" class="form-control" id="inputPassword4" formControlName="task">
+        </div>
+        <div class="col-md-1"></div>
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">Start Date</label>
+          <mat-form-field class=" form-control">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="startdatepicker" formControlName="startdate">
+            <mat-datepicker-toggle matIconSuffix [for]="startdatepicker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #startdatepicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-1"></div>
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">End Date</label>
+          <mat-form-field class="example-full-width form-control">
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="enddatepicker" formControlName="enddate">
+            <mat-datepicker-toggle matIconSuffix [for]="enddatepicker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #enddatepicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">Start Time</label>
+          <input type="time" class="form-control" id="inputAddress2" formControlName="starttime">
+        </div>
+        <div class="col-md-1"></div>
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">End Time</label>
+          <input type="time" class="form-control" id="inputAddress2" formControlName="endtime">
+        </div>
+
+        <div class="col-md-11">
+          <label for="inputCity" class="form-label">Description</label>
+          <textarea class="form-control" rows="5" formControlName="description"></textarea>
+        </div>
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">Duration</label>
+          <input type="text" class="form-control" id="inputAddress2" formControlName="duration">
+        </div>
+        <div class="col-md-1"></div>
+
+        <div class="col-md-5">
+          <label for="inputState" class="form-label">Status</label>
+          <select id="inputState" class="form-select" formControlName="status">
+            <option selected value="">Choose...</option>
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+
+        <div class="col-6 text-end mb-3 mt-5">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <hr>
+
+    <div class="row  m-3">
+      <div class="col-md-4 "></div>
+      <div class="col-md-3 ">
+        <h2 class="text-center text-shadow shadow p-2 mb-4 bg-body rounded">Project Tasks </h2>
+      </div>
+
+      <table class="table table-secondary text-center shadow p-3 mb-5 bg-body rounded">
+        <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Task</th>
+            <th>Startdate</th>
+            <th>Enddate</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Duration</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let task of tasks;let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{task.task}}</td>
+            <td>{{task.startdate | date}}</td>
+            <td>{{task.enddate | date}}</td>
+            <td>{{task.starttime}}</td>
+            <td>{{task.endtime}}</td>
+            <td>{{task.duration}}</td>
+            <td>{{task.status}}</td>
+            <td><button class="btn btn-primary" (click)="Edit(task.id)">Edit</button>
+              <button class="btn btn-danger" (click)="Delete(task.id)">Delete</button>
+            </td>
+            <!-- <td><button routerLink="projectmodules/{{project.id}}" class="btn btn-success">Add Module</button></td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>

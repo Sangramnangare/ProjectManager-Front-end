@@ -1,0 +1,101 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Projects</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Projects</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row bg-light m-3 shadow p-3 mb-5 bg-body rounded">
+      <form class="row g-3" [formGroup]="projectdata" (ngSubmit)="save(projectdata.value)">
+        <div class="col-md-5">
+          <label for="inputPassword4" class="form-label">Name</label>
+          <input type="text" class="form-control" id="inputPassword4" formControlName="name">
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+          <label for="inputState" class="form-label">Manager</label>
+          <select id="inputState" class="form-select" formControlName="managerid">
+            <option selected value="">Choose...</option>
+            <option *ngFor="let employee of employees" value="{{employee.id}}">{{employee.name}}</option>
+          </select>
+        </div>
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">Start Date</label>
+          <mat-form-field class=" form-control">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="startdatepicker" formControlName="startdate">
+            <mat-datepicker-toggle matIconSuffix [for]="startdatepicker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #startdatepicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-1"></div>
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">Target Date</label>
+          <mat-form-field class="example-full-width form-control">
+            <mat-label>Target Date</mat-label>
+            <input matInput [matDatepicker]="targetdatepicker" formControlName="targetdate">
+            <mat-datepicker-toggle matIconSuffix [for]="targetdatepicker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #targetdatepicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-11">
+          <label for="inputCity" class="form-label">Description</label>
+          <textarea class="form-control" rows="5" formControlName="description"></textarea>
+        </div>
+
+        <div class="col-6 text-end mb-3 mt-5">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <hr>
+
+    <div class="row  m-3">
+      <div class="col-md-4 "></div>
+      <div class="col-md-3 ">
+        <h2 class="text-center text-shadow shadow p-2 mb-4 bg-body rounded">Projects </h2>
+      </div>
+      <table class="table table-secondary text-center shadow p-3 mb-5 bg-body rounded">
+        <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Name</th>
+            <th>Startdate</th>
+            <th>Enddate</th>
+            <th>Manager</th>
+            <th>Action</th>
+            <th>Modules</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let project of projects;let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{project.name}}</td>
+            <td>{{project.startdate | date}}</td>
+            <td>{{project.targetdate | date}}</td>
+            <td>{{project.manager.name}}</td>
+            <td><button class="btn btn-primary" (click)="Edit(project.id)">Edit</button>
+              <button class="btn btn-danger" (click)="Delete(project.id)">Delete</button>
+            </td>
+            <td><button routerLink="projectmodules/{{project.id}}/{{project.managerid}}" class="btn btn-success">Add
+                Module</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>

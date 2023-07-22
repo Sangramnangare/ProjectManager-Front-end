@@ -1,0 +1,42 @@
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link " href="index.html">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link " routerLink="employees">
+        <i class="bi bi-card-list"></i><span>Employees</span>
+      </a>
+
+    </li><!-- End Employees Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link " routerLink="projects">
+        <i class="bi bi-menu-button-wide"></i><span>Projects</span>
+      </a>
+
+    </li><!-- End Projects Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link " routerLink="mytasks">
+        <i class="bi bi-journal-text"></i><span>My Tasks</span>
+      </a>
+
+    </li><!--End Project Modules Nav -->
+
+    <li class="nav-item" >
+      <a class="nav-link " routerLink="reports" *ngIf="usertype != false">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Reports</span>
+      </a>
+
+    </li><!--End Project Modules Nav -->
+
+  </ul>
+
+</aside>End Sidebar

@@ -1,0 +1,111 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Employees</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Employees</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row bg-light m-3 shadow p-3 mb-5 bg-body rounded sehide">
+      <div class="col-md-3">
+        <label for="inputState" class="form-label">Employee</label>
+        <select id="inputState" class="form-select" [(ngModel)]="employeename" (change)="changed()">
+          <option value="">--Select--</option>
+          <option *ngFor="let employee of employees" value="{{employee.name}}">{{employee.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+        <label for="inputState" class="form-label">Project</label>
+        <select id="inputState" class="form-select" [(ngModel)]="projectname" (change)="changed()">
+          <option value="">--Select--</option>
+          <option *ngFor="let project of projects" value="{{project.name}}">{{project.name}}</option>
+        </select>
+
+        <!-- <mat-form-field>
+            <mat-label>State</mat-label>
+            <mat-select [(ngModel)]="projectname" [ngModelOptions]="{standalone: true}">
+            <mat-select (change)="Project($event)">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let project of projects" [value]="project.name">{{project.name}}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-3">
+        <label for="inputState" class="form-label">Status</label>
+        <select id="inputState" class="form-select" [(ngModel)]="status" (change)="changed()">
+          <option selected value="">--Select--</option>
+          <!-- <option *ngFor="let projectstask of projectstasks">{{projectstask.status}}</option> -->
+          <option value="Completed">Completed</option>
+          <option value="Pending">Pending</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="inputCity" class="form-label">Start Date / End Date</label>
+        <mat-form-field class="form-control">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [rangePicker]="rangepicker">
+            <input matStartDate placeholder="Start date" name="startdate">
+            <input matEndDate placeholder="End date" name="enddate">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matIconSuffix [for]="rangepicker"></mat-datepicker-toggle>
+          <mat-date-range-picker #rangepicker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+      <div class="col-md-1"></div>
+      <!-- <div class="col-3">
+          <label for="inputCity" class="form-label">Start Date</label>
+          <input type="date" class="form-control" id="inputCity" >
+        </div> -->
+      <div class="col-md-1"></div>
+      <div class="col-md-3 mt-5">
+        <button class="btn btn-primary" (click)="Reset()">Reset</button>&nbsp;
+        <button class="btn btn-primary" (click)="Print('printtable')">Print</button>&nbsp;
+        <button class="btn btn-primary" (click)="exportexcel()">Excel</button>
+      </div>
+
+      <!-- <div class="col-md-6 text-end mb-3 mt-5">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div> -->
+    </div>
+
+    <hr>
+
+    <div class="row  m-3" id="printtable">
+
+      <table class="table text-center table-secondary shadow p-3 mb-5 bg-body rounded printtable" id="excel-table">
+        <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Employees</th>
+            <th>Projects</th>
+            <th>Project Modules</th>
+            <th>Project Tasks</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let report of reportlist;let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{report.employeename}}</td>
+            <td>{{report.projectname}}</td>
+            <td>{{report.modulename}}</td>
+            <td>{{report.projecttask}}</td>
+            <td>{{report.projectstatus}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </section>
+
+</main><!-- End #main -->

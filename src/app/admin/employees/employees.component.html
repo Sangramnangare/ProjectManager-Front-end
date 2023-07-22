@@ -1,0 +1,97 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Employees</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Employees</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row bg-light m-3 shadow p-3 mb-5 bg-body rounded">
+      <form class="row g-3" [formGroup]="formdata" (ngSubmit)="save(formdata.value)">
+        <div class="col-md-5">
+          <label for="inputPassword4" class="form-label">Name</label>
+          <input type="text" class="form-control" id="inputPassword4" formControlName="name">
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+          <label for="inputEmail4" class="form-label">Code</label>
+          <input type="text" class="form-control" id="inputEmail4" formControlName="code">
+        </div>
+
+        <div class="col-md-5">
+          <label for="inputState" class="form-label">Gender</label>
+          <select id="inputState" class="form-select" formControlName="gender">
+            <option selected>Choose...</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="col-md-1"></div>
+
+        <div class="col-md-5">
+          <label for="inputAddress2" class="form-label">Mobile No</label>
+          <input type="text" class="form-control" id="inputAddress2" formControlName="mobileno">
+        </div>
+        <div class="col-md-5">
+          <label for="inputCity" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputCity" formControlName="email">
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-5">
+          <label for="inputAddress" class="form-label">Password</label>
+          <input type="text" class="form-control" id="inputAddress" formControlName="password">
+        </div>
+
+        <div class="col-md-6 text-end mb-3 mt-5">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <hr>
+    
+    <div class="row  m-3">
+      <div class="col-md-4 "></div>
+      <div class="col-md-3 ">
+        <h2 class="text-center text-shadow shadow p-2 mb-4 bg-body rounded">Employees</h2>
+      </div>
+
+      <table class="table text-center table-secondary shadow p-3 mb-5 bg-body rounded">
+        <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Mobile No</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let employee of employees;let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{employee.code}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.gender}}</td>
+            <td>{{employee.email}}</td>
+            <td>{{employee.mobileno}}</td>
+            <td><button class="btn btn-primary" (click)="Edit(employee.id)">Edit</button>
+              <button class="btn btn-danger" (click)="Delete(employee.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </section>
+
+</main><!-- End #main -->

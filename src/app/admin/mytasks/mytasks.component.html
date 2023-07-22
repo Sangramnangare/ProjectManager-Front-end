@@ -1,0 +1,44 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Projects</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Projects</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row bg-light m-3 shadow p-3 mb-5 bg-body rounded">
+    <table class="table table-bordered table-striped border-dark text-center p-3 mb-5 bg-body rounded">
+      <thead>
+        <tr>
+          <th>Sr.No</th>
+          <th>id</th>
+          <th>Projects</th>
+          <th>Project Modules</th>
+          <th>Project Tasks</th>
+          <th>Status</th>
+          <th>Progress</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mytask of mytasks;let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{mytask.id}}</td>
+          <td>{{mytask.project.name}}</td>
+          <td>{{mytask.module.name}}</td>
+          <td>{{mytask.task}}</td>
+          <td>{{mytask.status}}</td>
+          <td><div>
+            <button class="btn btn-success"[hidden] *ngIf="mytask.status != 'Pending'" (click)="Open(mytask.id)">Open</button>
+            <button class="btn btn-danger" [hidden] *ngIf="mytask.status != 'Completed'" (click)="Close(mytask.id)">Close</button>
+          </div></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+  </section>

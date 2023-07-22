@@ -1,0 +1,24 @@
+/* @media printtable{
+  :host {
+    display: none;
+  }
+} */
+/*
+@media print{
+  .pagetitle,.sehide,header,footer{
+    display: none;
+  }
+  .printtable{
+    display: inline-table;
+  }
+} */
+
+@media print{
+  #printtable{
+    display: block;
+  }
+  .pagetitle,
+  .sehide{
+    display: none;
+  }
+}
